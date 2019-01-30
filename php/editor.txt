@@ -21,8 +21,7 @@ PUBLIC DOMAIN, NO COPYRIGHTS, NO PATENTS.
 <div id = "filescroll">
 
     <div class = "html file">html/index.txt</div>
-    <div class = "html file">html/page.txt</div>
-    
+
     <div class = "php file">php/index.txt</div>
     <div class = "php file">php/editor.txt</div>
     <div class = "php file">php/siteeditor.txt</div>
