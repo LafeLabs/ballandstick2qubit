@@ -86,6 +86,15 @@
     
 </table>
 
+
+<div id = "x3dbox">
+    <x3d id = "mainx3d">
+        <scene id = "main">
+        </scene>
+    </x3d>
+</div>
+
+
 <script>
 init();
 function init(){
@@ -120,6 +129,8 @@ function init(){
     phi2 = 0;
     
     epsilon = 0.001;
+    main = document.getElementById("main");
+
     redraw();
 }
 
@@ -162,12 +173,77 @@ function redraw(){
     hypersphereinputs[10].value = theta2;
     hypersphereinputs[11].value = phi2;
 
+    x = 0;
+    y = 0;
+    z = 0;
+    theta = theta0;
+    phi = 0;
+    solidColor = "red";
+    side3d = mag0;
+    drawBall();
+
+    x += 2*Math.sin(theta0);
+    y += 2*Math.sin(theta0);
+    z += 2*Math.cos(theta0);
+    solidColor = "green";
+    side3d = mag1 + 0.2;
+    drawBall();
+
+    x += 2*Math.sin(theta0 + theta1);
+    y += 2*Math.sin(theta0 + theta1);
+    z += 2*Math.cos(theta0 + theta1);
+    solidColor = "blue";
+    side3d = mag2 + 0.2;
+    drawBall();
     
+    x += 2*Math.sin(theta0 + theta1 + theta2);
+    y += 2*Math.sin(theta0 + theta1 + theta2);
+    z += 2*Math.cos(theta0 + theta1 + theta2);
+    solidColor = "purple";
+    side3d = mag3 + 0.2;
+    drawBall();
+
 }
+    
+function drawBall(){
+    var news = document.createElement("shape");
+    var newt = document.createElement("transform");
+    main.appendChild(newt);
+    newt.setAttribute("translation",x.toString() + " " + y.toString() + " " + z.toString() );
+    var newt2 = document.createElement("transform");
+    newt.appendChild(newt2);
+    newt2.setAttribute("scale",(0.5*side3d).toString() + " " + (0.5*side3d).toString() + " " + (0.5*side3d).toString());
+    newt2.appendChild(news);
+    var newa = document.createElement("appearance");
+    news.appendChild(newa);
+    var newm = document.createElement("material");
+    newm.setAttribute("diffuseColor",solidColor);
+    newa.appendChild(newm);
+    var newb = document.createElement("sphere");
+    news.appendChild(newb);
+}    
     
 </script>
 
 <style>
+
+#x3dbox{
+    position:absolute;
+    left:100px;
+    right:100px;
+    top:400px;
+    bottom:10px;
+    z-index:-1;
+}
+
+#mainx3d{
+    position:absolute;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    top:0px;
+}
+
     table{
         font-size:36px;
     }

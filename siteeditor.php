@@ -12,6 +12,7 @@ PUBLIC DOMAIN, NO COPYRIGHTS, NO PATENTS.
 <body>
 
 <a id = "indexlink" href = "index.php">PAGE</a>
+<a id = "editorlink" href = "editor.php">EDITOR.PHP</a>
 
 <div id="maineditor" contenteditable="true" spellcheck="false"></div>
 
@@ -72,7 +73,12 @@ body{
     top:0px;
     font-family:helvetica;
 }
-
+#editorlink{
+    position:absolute;
+    left:0px;
+    top:0px;
+    font-family:helvetica;
+}
 
 </style>
 
