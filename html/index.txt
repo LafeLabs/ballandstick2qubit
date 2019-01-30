@@ -1,0 +1,52 @@
+<a href = "editor.php" id = "editorphplink">editor.php</a>
+<h1 id = "toptitle">Ball and Stick Model of 2 Qubit Hilbert Space</h1>
+<table id = "rectangulartable">
+    <tr>
+        <td>
+           <input/>$+$ <input/> $i\left|00\right>$
+        </td>
+    </tr>
+    <tr>
+        <td>
+           <input/>$+$ <input/> $i\left|01\right>$
+        </td>
+    </tr>
+    <tr>
+        <td>
+           <input/>$+$ <input/> $i\left|10\right>$
+        </td>
+    </tr>
+    <tr>
+        <td>
+           <input/>$+$ <input/> $i\left|11\right>$
+        </td>
+    </tr>
+
+</table>
+
+<style>
+    #rectangulartable{
+        position:absolute;
+        left:100px;
+        top:100px;
+    }
+    #rectangulartable input{
+        width:1em;
+        border:solid;
+        border-width:4px;
+    }
+    #editorphplink{
+        display:block;
+        position:absolute;
+        left:0px;
+        top:0px;
+    }
+    #toptitle{
+        position:absolute;
+        z-index:-1;
+        top:0px;
+        left:0px;
+        right:0px;
+        text-align:center;
+    }
+</style>
