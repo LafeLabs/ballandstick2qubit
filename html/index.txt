@@ -178,29 +178,53 @@ function redraw(){
     z = 0;
     theta = theta0;
     phi = 0;
+    ballSize = 1;
+    stepSize = 2;
     solidColor = "red";
-    side3d = mag0;
+    side3d = 1;//mag0;
     drawBall();
 
-    x += 2*Math.sin(theta0);
-    y += 2*Math.sin(theta0);
-    z += 2*Math.cos(theta0);
+    x += 1*Math.sin(theta0);
+    y += 1*Math.sin(theta0);
+    z += 1*Math.cos(theta0);
+    solidColor = "black";
+    side3d = 1;//mag1 + 0.2;
+    drawStick();
+
+    x += 1*Math.sin(theta0);
+    y += 1*Math.sin(theta0);
+    z += 1*Math.cos(theta0);
     solidColor = "green";
-    side3d = mag1 + 0.2;
+    side3d = 1;//mag1 + 0.2;
     drawBall();
 
-    x += 2*Math.sin(theta0 + theta1);
-    y += 2*Math.sin(theta0 + theta1);
-    z += 2*Math.cos(theta0 + theta1);
+    x += 1*Math.sin(theta0 + theta1);
+    y += 1*Math.sin(theta0 + theta1);
+    z += 1*Math.cos(theta0 + theta1);
+    solidColor = "black";
+    side3d = 1;//mag1 + 0.2;
+    drawStick();
+
+    x += 1*Math.sin(theta0 + theta1);
+    y += 1*Math.sin(theta0 + theta1);
+    z += 1*Math.cos(theta0 + theta1);
     solidColor = "blue";
-    side3d = mag2 + 0.2;
+    side3d = 1;//mag2 + 0.2;
     drawBall();
+
+    x += 1*Math.sin(theta0 + theta1 + theta2);
+    y += 1*Math.sin(theta0 + theta1 + theta2);
+    z += 1*Math.cos(theta0 + theta1 + theta2);
+
+    solidColor = "black";
+    side3d = 1;//mag1 + 0.2;
+    drawStick();
     
-    x += 2*Math.sin(theta0 + theta1 + theta2);
-    y += 2*Math.sin(theta0 + theta1 + theta2);
-    z += 2*Math.cos(theta0 + theta1 + theta2);
+    x += 1*Math.sin(theta0 + theta1 + theta2);
+    y += 1*Math.sin(theta0 + theta1 + theta2);
+    z += 1*Math.cos(theta0 + theta1 + theta2);
     solidColor = "purple";
-    side3d = mag3 + 0.2;
+    side3d = 1;//mag3 + 0.2;
     drawBall();
 
 }
@@ -209,7 +233,7 @@ function drawBall(){
     var news = document.createElement("shape");
     var newt = document.createElement("transform");
     main.appendChild(newt);
-    newt.setAttribute("translation",x.toString() + " " + y.toString() + " " + z.toString() );
+    newt.setAttribute("translation",z.toString() + " " + x.toString() + " " + y.toString() );
     var newt2 = document.createElement("transform");
     newt.appendChild(newt2);
     newt2.setAttribute("scale",(0.5*side3d).toString() + " " + (0.5*side3d).toString() + " " + (0.5*side3d).toString());
@@ -223,6 +247,32 @@ function drawBall(){
     news.appendChild(newb);
 }    
     
+function drawStick(){
+    var news = document.createElement("shape");
+    var newt = document.createElement("transform");
+
+    main.appendChild(newt);
+    newt.setAttribute("translation",z.toString() + " " + x.toString() + " " + y.toString() );
+    var newt2 = document.createElement("transform");
+    
+    newt2.setAttribute("scale",(0.1).toString() + " " + (1).toString() + " " + (0.1).toString());
+    var newt3 = document.createElement("transform");
+    
+    newt3.setAttribute("rotation","0 0 1 1.570796");
+
+    newt.appendChild(newt3);
+    newt3.appendChild(newt2);
+    newt2.appendChild(news);
+
+    var newa = document.createElement("appearance");
+    news.appendChild(newa);
+    var newm = document.createElement("material");
+    newm.setAttribute("diffuseColor",solidColor);
+    newa.appendChild(newm);
+    var newb = document.createElement("cylinder");
+    news.appendChild(newb);
+}
+
 </script>
 
 <style>
