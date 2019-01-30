@@ -86,37 +86,6 @@
     
 </table>
 
-<script>
-init();
-function init(){
-    real0 = 1;
-    imag0 = 0;
-    real1 = 0;
-    imag1 = 0;
-    real2 = 0;
-    imag2 = 0;
-    real3 = 0;
-    imag3 = 0;
-    
-    mag0 = 1;
-    phase0 = 0;
-    mag1 = 0;
-    phase1 = 0
-    mag2 = 0;
-    phase2 = 0;
-    mag3 = 0;
-    phase3 = 0;
-    
-    theta0 = 0;
-    theat1 = 0;
-    theta2 = 0;
-    phi0 = 0;
-    phi1 = 0;
-    phi2 = 0;
-}
-    
-</script>
-
 <style>
     table{
         font-size:36px;
