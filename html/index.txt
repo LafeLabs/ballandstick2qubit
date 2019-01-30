@@ -89,6 +89,11 @@
 <script>
 init();
 function init(){
+
+    rectangularinputs = document.getElementById("rectangulartable").getElementsByTagName("input");
+    polarinputs = document.getElementById("polartable").getElementsByTagName("input");
+    hypersphereinputs = document.getElementById("hyperspheretable").getElementsByTagName("input");
+    
     real0 = 1;
     imag0 = 0;
     real1 = 0;
@@ -108,11 +113,56 @@ function init(){
     phase3 = 0;
     
     theta0 = 0;
-    theat1 = 0;
+    theta1 = 0;
     theta2 = 0;
     phi0 = 0;
     phi1 = 0;
     phi2 = 0;
+    
+    epsilon = 0.001;
+    redraw();
+}
+
+function redraw(){
+    rectangularinputs[0].value = real0;
+    rectangularinputs[1].value = imag0;
+    rectangularinputs[2].value = real1;
+    rectangularinputs[3].value = imag1;
+    rectangularinputs[4].value = real2;
+    rectangularinputs[5].value = imag2;
+    rectangularinputs[6].value = real3;
+    rectangularinputs[7].value = imag3;
+
+    polarinputs[0].value = mag0;
+    polarinputs[1].value = phase0;
+    polarinputs[2].value = mag1;
+    polarinputs[3].value = phase1;
+    polarinputs[4].value = mag2;
+    polarinputs[5].value = phase2;
+    polarinputs[6].value = mag3;
+    polarinputs[7].value = phase3;
+
+    theta0 = Math.acos(mag0);
+    theta1 = Math.acos((epsilon + mag1)/(epsilon + Math.sqrt(1 - mag0*mag0)));
+    theta2 = Math.acos((epsilon + mag2)/(epsilon + Math.sqrt(1 - mag0*mag0 - mag1*mag1*(1 - mag0*mag0))));
+    phi0 = phase1 - phase0;
+    phi1 = phase2 - phase0;
+    phi3 = phase3 - phase0;
+    
+    hypersphereinputs[0].value = theta0;
+    hypersphereinputs[1].value = theta0;
+    hypersphereinputs[2].value = theta1;
+    hypersphereinputs[3].value = phi0;
+    hypersphereinputs[4].value = theta0;
+    hypersphereinputs[5].value = theta1;
+    hypersphereinputs[6].value = theta2;
+    hypersphereinputs[7].value = phi1;
+    hypersphereinputs[8].value = theta0;
+    hypersphereinputs[9].value = theta1;
+    hypersphereinputs[10].value = theta2;
+    hypersphereinputs[11].value = phi2;
+
+    
 }
     
 </script>
