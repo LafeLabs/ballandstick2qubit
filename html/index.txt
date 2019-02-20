@@ -131,6 +131,17 @@ function init(){
     epsilon = 0.001;
     main = document.getElementById("main");
 
+    x = 0;
+    y = 0;
+    z = 0;
+    xhat = [1,0,0];
+    zhat = [0,0,1];
+    //yhat = zhat X xhat
+    theta = theta0;
+    phi = 0;
+    ballSize = 1;
+    stepSize = 2;
+
     redraw();
 }
 
@@ -153,9 +164,14 @@ function redraw(){
     polarinputs[6].value = mag3;
     polarinputs[7].value = phase3;
 
+/*this is physics: 
+convert the phase angles to have ground state be zero phase, and 
+compute the various angles on the N-sphere(3-sphere in this case)
+*/
     theta0 = Math.acos(mag0);
     theta1 = Math.acos((epsilon + mag1)/(epsilon + Math.sqrt(1 - mag0*mag0)));
     theta2 = Math.acos((epsilon + mag2)/(epsilon + Math.sqrt(1 - mag0*mag0 - mag1*mag1*(1 - mag0*mag0))));
+
     phi0 = phase1 - phase0;
     phi1 = phase2 - phase0;
     phi3 = phase3 - phase0;
@@ -173,23 +189,21 @@ function redraw(){
     hypersphereinputs[10].value = theta2;
     hypersphereinputs[11].value = phi2;
 
-    x = 0;
-    y = 0;
-    z = 0;
-    theta = theta0;
-    phi = 0;
-    ballSize = 1;
-    stepSize = 2;
     solidColor = "red";
-    side3d = 1;//mag0;
-    drawBall();
+    side3d = 1;//mag0;//size of the ball, fix at 1 for now
+    drawBall(); //this ball is always the same, centered at x=y=z=0, and red
+
+    //first rotate zhat around xhat axis by theta:
+    zhat=[0,Math.sin(theta0),Math.cos(theta0)];
+    //rotate xhat around zhat, then then rotate it around the old xhat
+    xhat=[-Math.sin(phi0),Math.cos(phi0)*Math.cos(theta0),Math.cos(phi0)*Math.sin(theta0)];
 
     x += 1*Math.sin(theta0);
     y += 1*Math.sin(theta0);
     z += 1*Math.cos(theta0);
     solidColor = "black";
     side3d = 1;//mag1 + 0.2;
-    drawStick();
+//    drawStick();
 
     x += 1*Math.sin(theta0);
     y += 1*Math.sin(theta0);
@@ -203,7 +217,7 @@ function redraw(){
     z += 1*Math.cos(theta0 + theta1);
     solidColor = "black";
     side3d = 1;//mag1 + 0.2;
-    drawStick();
+   // drawStick();
 
     x += 1*Math.sin(theta0 + theta1);
     y += 1*Math.sin(theta0 + theta1);
@@ -218,7 +232,7 @@ function redraw(){
 
     solidColor = "black";
     side3d = 1;//mag1 + 0.2;
-    drawStick();
+  //  drawStick();
     
     x += 1*Math.sin(theta0 + theta1 + theta2);
     y += 1*Math.sin(theta0 + theta1 + theta2);
